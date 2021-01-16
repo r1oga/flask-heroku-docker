@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_email import send_email
 from dotenv import load_dotenv
+from sqlalchemy.sql.expression import func
 
 load_dotenv()
 
@@ -34,10 +35,13 @@ def success():
 
         # check if user already exists
         if db.session.query(Data).filter(Data.email == email).count() == 0:
-            send_email(email, height)
             data = Data(email, height)
             db.session.add(data)
             db.session.commit()
+            avg = db.session.query(func.avg(Data.height)).scalar()
+            avg = round(avg, 1)
+            count = db.session.query(Data.height).count()
+            send_email(email, height, avg, count)
             return render_template("success.html")
 
     return render_template("index.html", text="This email already submitted a height!")
