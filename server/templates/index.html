@@ -10,6 +10,7 @@
     <div class="container">
       <h1>Collecting height</h1>
       <h3>Fill the entries to get population statistics about height</h3>
+      <div class="message">{{text | safe}}</div>
       <form action="{{url_for('success')}}" method="POST">
         <label>
           <input
