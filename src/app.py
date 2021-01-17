@@ -32,7 +32,7 @@ def root():
     return render_template("index.html")
 
 
-@app.route("/sucess", methods=["POST"])
+@app.route("/success", methods=["POST"])
 def success():
     if request.method == "POST":
         email, height = request.form.values()
