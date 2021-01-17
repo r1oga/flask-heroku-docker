@@ -21,8 +21,17 @@
 ## Deploy on Heroku
 
 1. ```
+    heroku login
     heroku create appname
     heroku addons:create heroku-postgresql:hobby-dev --app appname
     ```
 2. Add `?sslmode=require` to DB URI
+3. Create DB:
+    ```
+    heroku run python
+    from app import db
+    db.create_all()
+    exit()
+    ```
 3. `heroku container:push web`
+4. `heroku psql`

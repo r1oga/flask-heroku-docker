@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_email import send_email
-from dotenv import load_dotenv
+
+# from dotenv import load_dotenv
 from sqlalchemy.sql.expression import func
 import os
 
-load_dotenv()
+# load_dotenv()
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
