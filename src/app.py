@@ -3,12 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from send_email import send_email
 from dotenv import load_dotenv
 from sqlalchemy.sql.expression import func
+import os
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:pwd@localhost/hwa"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:pwd@localhost/hwa"
+# heroku postgres
+app.config["SQLALCHEMY_DATABASE_URI"] = f"{os.environ['DATABASE_URL']}?sslmode=require"
 db = SQLAlchemy(app)
 
 

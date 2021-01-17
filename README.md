@@ -1,3 +1,4 @@
+## Config postgres
 1. Install postgres
     ```
     docker run -p 5432:5432 --name pg -e POSTGRES_PASSWORD=pwd -d postgres
@@ -16,3 +17,12 @@
     from app import db
     db.create_all()
     ```
+
+## Deploy on Heroku
+
+1. ```
+    heroku create appname
+    heroku addons:create heroku-postgresql:hobby-dev --app appname
+    ```
+2. Add `?sslmode=require` to DB URI
+3. 
