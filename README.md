@@ -25,4 +25,4 @@
     heroku addons:create heroku-postgresql:hobby-dev --app appname
     ```
 2. Add `?sslmode=require` to DB URI
-3. 
+3. `heroku container:push web`
